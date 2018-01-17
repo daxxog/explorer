@@ -176,6 +176,12 @@ is_locked(function (exists) {
                       });
                     });
                   } else if (mode == 'update') {
+                    console.log(stats);
+
+                    if(stats.last < 0) {
+                      stats.last = 0;
+                    }
+
                     db.update_tx_db(settings.coin, stats.last, stats.count, settings.update_timeout, function(){
                       db.update_richlist('received', function(){
                         db.update_richlist('balance', function(){
